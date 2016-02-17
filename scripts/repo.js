@@ -5,13 +5,11 @@
 
   // TODO: Refactor this ajax call into a get request to the proxy end point provided by server.js.
   repos.requestRepos = function(callback) {
-    $.get("/github/users/kyleschnirring/repos", function (response, error) {
-      if (error) {
-        console.log(error);
-      }
-      console.log(response);
-      callback(response);
-    });
+    $.get('/github/users/kyleschnirring/repos')
+    .done(function(data, message, xhr) {
+      repos.all = data;
+    })
+    .done(callback);
   };
 
   repos.with = function(attr) {
